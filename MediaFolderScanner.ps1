@@ -16,17 +16,17 @@ Foreach ($ShowFolder in $TVFolders) {
 		    If ($Season.FullName -match(“Extra")) { # E comes before S so catch out of order structure
                 $NewName = "Specials" # Purposed New name for Folder
                 $i--
-            }
+            } # If Folder is Extra
             else {
                 $NewName = "Season {0:d2}" -f $i # Purposed New name for Folder 
-            }
+            } # Else
             $Loop = 0
             while ($Loop -eq 0) {
                 $PurposedName = (Join-Path $ShowFolder.FullName $NewName)
                 write-host "Change to: $PurposedName"
                 if (Test-path $PurposedName) { # Check if Purposed name exists
                     write-host "$NewName - Duplicate folder Found! "
-                }
+                } # If proposed name exists
                 write-host "[ Yes ]   [ No ]   [ Custom Folder Name ]   [ Fix Folder Counter ($i) ]   [ Merge Folder ]]"
                 $MakeChange = read-host -prompt "Input (Y:N:C:F:M)"
                 switch($MakeChange) {
